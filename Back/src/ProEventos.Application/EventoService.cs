@@ -24,10 +24,10 @@ namespace ProEventos.Application
         }
         public async Task<EventoDto> AddEventos(EventoDto model)
         {
-            var evento = _mapper.Map<Evento>(model);
-
             try
             {
+                var evento = _mapper.Map<Evento>(model);
+
                 _geralPersist.Add<Evento>(evento);
 
                 if (await _geralPersist.SaveChangesAsync())

@@ -17,7 +17,7 @@ export class EventoListaComponent implements OnInit {
   modalRef?: BsModalRef;
   public eventos: Evento[] = [];
   public eventosFiltrados : Evento[] = [];
-  public eventoId = 0;
+  public eventoId: number = 0;
 
   public larguraImagem = 150;
   public margemImagem = 2;
@@ -70,13 +70,13 @@ export class EventoListaComponent implements OnInit {
   ).add(() => this.spinner.hide());
   }
 
-  openModal(event: any, template: TemplateRef<any>, eventoId: number): void {
+  public openModal(event: any, template: TemplateRef<any>, eventoId: number): void {
     event.stopPropagation();
     this.eventoId = eventoId;
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
 
-  confirm(): void {
+  public confirm(): void {
     this.modalRef?.hide();
     this.spinner.show();
 
@@ -95,11 +95,11 @@ export class EventoListaComponent implements OnInit {
 
   }
 
-  decline(): void {
+  public decline(): void {
     this.modalRef?.hide();
   }
 
-  detalheEvento(id: number): void {
+  public detalheEvento(id: number): void {
     this.router.navigate([`eventos/detalhe/${id}`]);
   }
 
