@@ -26,7 +26,7 @@ export class NavComponent implements OnInit {
   }
 
   public register(): boolean {
-    return this.router.url === ('/user/registration');
+    return this.router.url === (('/user/registration') || ('/user/login'));
   }
 
 }

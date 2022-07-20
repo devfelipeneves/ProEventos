@@ -9,7 +9,7 @@
     </button>
     <div class="collapse navbar-collapse" [collapse]="isCollapsed" [isAnimated]="true" id="navbarNav">
       <ul class="navbar-nav mr-auto">
-        <ng-container *ngIf="(accountService.currentUser$ | async) !== null">
+        <ng-container *ngIf="(accountService.currentUser$ | async) !== null && !register()">
           <li class="nav-item" routerLinkActive="active">
             <a class="nav-link" aria-current="page" routerLink="dashboard">Dashboard</a>
           </li>
