@@ -84,7 +84,7 @@ namespace ProEventos.Application
             try
             {
                 var lote = await _lotePersist.GetLoteByIdsAsync(eventoId, loteId);
-                if (lote == null) throw new Exception("O Lote para delete não foi encontrado.");
+                if (lote == null) throw new Exception("Lote para delete não foi encontrado.");
 
                 _geralPersist.Delete<Lote>(lote);
                 return await _geralPersist.SaveChangesAsync();
