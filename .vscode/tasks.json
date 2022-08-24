@@ -32,9 +32,8 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/Back/src/ProEventos.API/ProEventos.API.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "--project",
+                "${workspaceFolder}/Back/src/ProEventos.API/ProEventos.API.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

@@ -20,7 +20,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'user/login', pathMatch: 'full' },
   {
     path: '',
     runGuardsAndResolvers: 'always',

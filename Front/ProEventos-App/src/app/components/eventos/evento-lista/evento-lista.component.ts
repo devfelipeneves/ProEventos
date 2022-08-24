@@ -18,8 +18,9 @@ import { debounceTime } from 'rxjs/operators';
   styleUrls: ['./evento-lista.component.scss']
 })
 export class EventoListaComponent implements OnInit {
+
   modalRef?: BsModalRef;
-  public eventos: Evento[] = [];
+  public eventos = {} as Evento[];
   public eventoId: number = 0;
   public pagination = {} as Pagination;
 
@@ -28,6 +29,14 @@ export class EventoListaComponent implements OnInit {
   public exibirImagem = true;
 
   public termoBuscaChanged: Subject<string> = new Subject<string>();
+
+  constructor(
+    private eventoService: EventoService,
+    private modalService: BsModalService,
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService,
+    private router: Router
+  ) { }
 
   public filtrarEventos(event: any) : void {
     if (this.termoBuscaChanged.observers.length === 0) {
@@ -52,14 +61,6 @@ export class EventoListaComponent implements OnInit {
     }
     this.termoBuscaChanged.next(event.value);
   }
-
-  constructor(
-    private eventoService: EventoService,
-    private modalService: BsModalService,
-    private toastr: ToastrService,
-    private spinner: NgxSpinnerService,
-    private router: Router
-  ) { }
 
   public ngOnInit(): void {
     this.pagination = {

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from '@app/models/identity/User';
 import { AccountService } from '@app/services/account.service';
 
 @Component({
@@ -9,6 +10,7 @@ import { AccountService } from '@app/services/account.service';
 })
 export class NavComponent implements OnInit {
   isCollapsed = true;
+  user!: User;
 
   constructor(public accountService: AccountService,
               private router: Router) { }
@@ -27,6 +29,12 @@ export class NavComponent implements OnInit {
 
   public register(): boolean {
     return this.router.url === (('/user/registration') || ('/user/login'));
+  }
+
+  public carregarUsuario(): void {
+    this.accountService.currentUser$.subscribe(
+      (response: User) => this.user = response
+    )
   }
 
 }

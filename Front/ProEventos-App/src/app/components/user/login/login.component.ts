@@ -4,6 +4,7 @@ import { UserLogin } from '@app/models/identity/UserLogin';
 import { AccountService } from '@app/services/account.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -32,5 +33,6 @@ export class LoginComponent implements OnInit {
         else console.error(error);
       }
     ).add(() => this.spinner.hide());
+
   }
 }

@@ -45,14 +45,15 @@ namespace ProEventos.Persistence
                 .Include(p => p.User)
                 .Include(p => p.RedesSociais);
 
-            if (includeEventos) {
+            if (includeEventos) 
+            {
                 query = query
                 .Include(p => p.PalestrantesEventos)
                 .ThenInclude(pe => pe.Evento);
             }
 
             query = query.AsNoTracking().OrderBy(p => p.Id)
-                         .Where(p => p.Id == userId);
+                         .Where(p => p.UserId == userId);
 
             return await query.FirstOrDefaultAsync();
         }
