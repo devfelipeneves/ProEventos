@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserLogin } from '@app/models/identity/UserLogin';
 import { AccountService } from '@app/services/account.service';
@@ -13,16 +14,29 @@ import { debounceTime } from 'rxjs/operators';
 })
 export class LoginComponent implements OnInit {
   model = {} as UserLogin;
+  userLogin!: FormGroup;
 
   constructor(private accountService: AccountService,
               private router: Router,
               private toastr: ToastrService,
-              private spinner: NgxSpinnerService) { }
+              private spinner: NgxSpinnerService,
+              private fb:FormBuilder) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.validation();
+  }
+
+  private validation(): void {
+
+    this.userLogin = this.fb.group({
+      userName: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
+  }
 
   public login(): void {
     this.spinner.show();
+    this.model = { ...this.userLogin.value }
     this.accountService.login(this.model).subscribe(
       () => { this.router.navigateByUrl('/dashboard');
       },

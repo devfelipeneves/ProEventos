@@ -59,8 +59,8 @@ export class RedesSociaisComponent implements OnInit {
             });
           },
           (error: any) => {
-            this.toastr.error('Erro ao tentar carregar Redes Sociais', 'Erro!');
-            console.error(error);
+            // this.toastr.error('Erro ao tentar carregar Redes Sociais', 'Erro!');
+            // console.error(error);
           }
         ).add(() => this.spinner.hide());
   }

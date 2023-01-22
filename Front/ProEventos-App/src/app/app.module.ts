@@ -4,6 +4,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -92,7 +94,8 @@ defineLocale('pt-br', ptBrLocale);
       progressBar: true
     }),
     NgxSpinnerModule,
-    NgxCurrencyModule
+    NgxCurrencyModule,
+    MatSlideToggleModule,
   ],
   providers: [
     AccountService,

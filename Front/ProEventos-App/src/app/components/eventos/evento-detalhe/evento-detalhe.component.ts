@@ -150,7 +150,11 @@ export class EventoDetalheComponent implements OnInit {
   }
 
   public resetForm(): void {
-    this.form.reset();
+    if(this.modoEditar) {
+      this.carregarEvento();
+    } else {
+      this.form.reset();
+    }
   }
 
   public cssValidator(campoForm: FormControl | AbstractControl | null) : any {

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject, Renderer2 } from '@angular/core';
 import { User } from './models/identity/User';
 import { AccountService } from './services/account.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +9,20 @@ import { AccountService } from './services/account.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  private isDark = false;
 
-  constructor(public accountService: AccountService) { }
+  constructor(public accountService: AccountService,
+              @Inject(DOCUMENT) private document: Document,
+              private renderer: Renderer2) { }
 
   ngOnInit(): void {
     this.setCurrentUser();
+  }
+
+  modoDark(isDarkMode: boolean) {
+    this.isDark = isDarkMode;
+    const hostClass = isDarkMode ? 'bg-dark theme-dark mat-typography' : 'bg-light theme-light mat-typography';
+    this.renderer.setAttribute(this.document.body, 'class', hostClass);
   }
 
   setCurrentUser(): void {
