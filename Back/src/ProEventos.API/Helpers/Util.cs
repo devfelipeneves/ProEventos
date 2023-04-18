@@ -18,6 +18,13 @@ namespace ProEventos.API.Helpers
 
         public async Task<string> SaveImage(IFormFile imageFile, string destino)
         {
+            string path = Path.Combine(_hostEnvironment.ContentRootPath, @$"Resources/{destino}");
+
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
             string imageName = new String(Path.GetFileNameWithoutExtension(imageFile.FileName)
                                               .Take(10)
                                               .ToArray()
@@ -25,7 +32,7 @@ namespace ProEventos.API.Helpers
 
             imageName = $"{imageName}{DateTime.UtcNow.ToString("yymmssfff")}{Path.GetExtension(imageFile.FileName)}";
 
-            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, @$"Resources/{destino}", imageName);
+            var imagePath = Path.Combine(path, imageName);
 
             using (var fileStream = new FileStream(imagePath, FileMode.Create))
             {

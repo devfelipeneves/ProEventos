@@ -47,7 +47,6 @@ export class PerfilDetalheComponent implements OnInit {
     this.spinner.show();
     this.accountService.getUser().subscribe(
       (userRetorno: UserUpdate) => {
-        console.log(userRetorno);
         this.userUpdate = userRetorno;
         this.form.patchValue(this.userUpdate);
         this.verificaPalestrante();
@@ -124,6 +123,7 @@ export class PerfilDetalheComponent implements OnInit {
   public resetForm(event: any): void {
     event.preventDefault();
     this.form.reset();
+    this.ngOnInit();
   }
 
   public cssValidator(campoForm: FormControl) : any {
